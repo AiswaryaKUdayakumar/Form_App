@@ -1,0 +1,33 @@
+<div class="form-container">
+  <h2>Form</h2>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" formControlName="name">
+
+      <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || submitted)" class="error">
+        <div *ngIf="form.controls['name'].errors?.['required']">Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="email">
+      <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || submitted)" class="error">
+        <div *ngIf="form.controls['email'].errors?.['required']">Email is required</div>
+        <div *ngIf="form.controls['email'].errors?.['email']">Invalid email format</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" formControlName="password">
+      <div *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || submitted)" class="error">
+        <div *ngIf="form.controls['password'].errors?.['required']">Password is required</div>
+        <div *ngIf="form.controls['password'].errors?.['minlength']">Password must be at least 6 characters long</div>
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
